@@ -7,6 +7,7 @@ jobs:
   autoupdate:
     name: autoupdate
     runs-on: ubuntu-latest
+    continue-on-error: true
     steps:
       - name: Auto Update
         uses: chinthakagodawita/autoupdate@v1.6.0
@@ -14,7 +15,7 @@ jobs:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           MERGE_MSG: "Branch was auto-updated."
           MERGE_CONFLICT_ACTION: "fail"
-
+    
       - run: echo 'Merge conflicts found!'
         if: ${{ steps.autoupdate.outputs.conflicted }}
 
